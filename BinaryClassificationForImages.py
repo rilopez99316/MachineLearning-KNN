@@ -177,3 +177,11 @@ print("[14, 14] Sneaker standard deviation: ", statistics.stdev(array_sneakers_c
 print("[14, 14] Non-sneaker standard deviation: ", statistics.stdev(array_non_sneakers_center_value))
 print("[3, 14] Sneaker standard deviation: ", statistics.stdev(array_sneakers_value_314))
 print("[3, 14] Non-sneaker standard deviation: ", statistics.stdev(array_non_sneakers_value_314))
+
+print('Number of sneaker images in training set:', (Y_train_binary == 1).sum())
+print('Number of non-sneaker images in training set:', (Y_train_binary == 0).sum())
+
+X_train = X_train.reshape(X_train.shape[0],-1)
+X_test = X_test.reshape(X_test.shape[0],-1)
+print(X_train.shape)
+print(X_test.shape)
