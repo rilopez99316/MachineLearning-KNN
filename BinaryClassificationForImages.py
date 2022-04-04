@@ -305,3 +305,40 @@ def knn_multiclass(X_train, Y_train, X_test, k):
   return pred
 
 knn_multiclass(X_train, Y_train, X_test, 5)
+
+k3_pred = knn_multiclass(X_train, Y_train, X_test, 3)
+k6_pred = knn_multiclass(X_train, Y_train, X_test, 6)
+k7_pred = knn_multiclass(X_train, Y_train, X_test, 7)
+k4_pred = knn_multiclass(X_train, Y_train, X_test, 4)
+k10_pred = knn_multiclass(X_train, Y_train, X_test, 10)
+
+cm1 = confusion_matrix(Y_test, k3_pred)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm1)
+disp.plot()
+plt.show()
+
+cm2 = confusion_matrix(Y_test, k6_pred)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm2)
+disp.plot()
+plt.show()
+
+cm3 = confusion_matrix(Y_test, k7_pred)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm3)
+disp.plot()
+plt.show()
+
+cm4 = confusion_matrix(Y_test, k4_pred)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm4)
+disp.plot()
+plt.show()
+
+cm5 = confusion_matrix(Y_test, k10_pred)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm5)
+disp.plot()
+plt.show()
+
+print("k3 Accuracy: ", accuracy(Y_test, k3_pred))
+print("k6 Accuracy: ", accuracy(Y_test, k6_pred))
+print("k7 Accuracy: ", accuracy(Y_test, k7_pred))
+print("k4 Accuracy: ", accuracy(Y_test, k4_pred))
+print("k10 Accuracy: ", accuracy(Y_test, k10_pred))
