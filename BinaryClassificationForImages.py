@@ -134,3 +134,14 @@ for i in range (5):
 
 
 plt.show()
+
+# Make copies of the original labels.
+Y_train_binary = np.copy(Y_train)
+Y_test_binary = np.copy(Y_test)
+
+# Update labels: 1 for sneaker images; 0 for the rest.
+# Note that a boolean array is created when Y_train_binary != 7 is evaluated.
+Y_train_binary[Y_train_binary != 7] = 0.0 
+Y_train_binary[Y_train_binary == 7] = 1.0
+Y_test_binary[Y_test_binary != 7] = 0.0
+Y_test_binary[Y_test_binary == 7] = 1.0
