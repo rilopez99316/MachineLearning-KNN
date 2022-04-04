@@ -35,3 +35,8 @@ print('X_train.shape:', X_train.shape)
 print('Y_train.shape:', Y_train.shape)
 print('X_test.shape:', X_test.shape)
 print('Y_test.shape:', Y_test.shape)
+
+# Pixel values range from 0 to 255. To normalize the data, we just need to 
+# divide all values by 255.
+X_train = X_train / 255
+X_test = X_test / 255
