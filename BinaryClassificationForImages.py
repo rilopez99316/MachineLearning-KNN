@@ -272,3 +272,36 @@ for i in range(5):
   axs[i].imshow(image, cmap='gray')  # imshow renders a 2D grid
   axs[i].axis('off')
 plt.show()
+
+X_test = X_test.reshape(X_test.shape[0],-1)
+X_train = X_train.reshape(X_train.shape[0],-1)
+Y_test_binary[Y_test_binary != 7] = 0.0
+Y_test_binary[Y_test_binary == 7] = 1.0
+
+def most_common(labels):
+    counter = np.zeros(np.amax(labels) +1 )
+    for c in labels:
+        counter[c] = counter[c] + 1
+    return np.argmax(counter)
+
+def dist(a0, a1):
+  return np.sqrt(np.sum((a0-a1) ** 2))
+
+def knn_multiclass(X_train, Y_train, X_test, k):
+  pred = np.zeros(X_test.shape[0])
+  d = np.zeros(X_train.shape[0])
+
+  for i in range(X_test.shape[0]): #traverses through test examples
+    test_example = X_test[i] 
+
+    for j in range(X_train.shape[0]):#traverses through training examples
+      train_example = X_train[j] 
+      d[j] = dist(test_example, train_example)# gets distances
+
+    #gets the k distances
+    nei = np.argsort(d)[:k]
+    pred[i] = most_common(Y_train[nei]) # gets the most repeating labels
+
+  return pred
+
+knn_multiclass(X_train, Y_train, X_test, 5)
