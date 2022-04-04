@@ -40,3 +40,10 @@ print('Y_test.shape:', Y_test.shape)
 # divide all values by 255.
 X_train = X_train / 255
 X_test = X_test / 255
+
+label_names = ['t-shirt', 'trouser', 'pullover', 'dress', 'coat',
+               'sandal', 'shirt', 'sneaker', 'bag', 'ankle boot']
+
+# Show the first 5 training labels.
+print('First 5 label values:', Y_train[0:5])
+print('Mapped to their names:', [label_names[i] for i in Y_train[0:5]])
