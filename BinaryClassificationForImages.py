@@ -145,3 +145,35 @@ Y_train_binary[Y_train_binary != 7] = 0.0
 Y_train_binary[Y_train_binary == 7] = 1.0
 Y_test_binary[Y_test_binary != 7] = 0.0
 Y_test_binary[Y_test_binary == 7] = 1.0
+
+sneakers = X_train[Y_train_binary == 1]
+non_sneakers = X_train[Y_train_binary != 1]
+
+array_sneakers_center_value = []
+array_non_sneakers_center_value = []
+array_sneakers_value_314 = []
+array_non_sneakers_value_314 = []
+
+#mean: sum of the terms / number of terms
+for i in range (len(sneakers)):
+  #gets individual image
+  sneaker_image = sneakers[i]
+  non_sneaker_image = non_sneakers[i]
+
+  #add value of pixel [14][14] to an array
+  array_sneakers_center_value.append(sneaker_image[14][14])
+  array_non_sneakers_center_value.append(non_sneaker_image[14][14])
+  #add value of pixel [3][14] to an array
+  array_sneakers_value_314.append(sneaker_image[3][14])
+  array_non_sneakers_value_314.append(non_sneaker_image[3][14])
+
+#calculatates mean
+print("[14, 14] Sneaker mean: ", statistics.mean(array_sneakers_center_value))
+print("[14, 14] Non-sneaker mean: ", statistics.mean(array_non_sneakers_center_value))
+print("[3, 14] Sneaker mean: ", statistics.mean(array_sneakers_value_314))
+print("[3, 14] Non-sneaker mean: ", statistics.mean(array_non_sneakers_value_314))
+
+print("[14, 14] Sneaker standard deviation: ", statistics.stdev(array_sneakers_center_value))
+print("[14, 14] Non-sneaker standard deviation: ", statistics.stdev(array_non_sneakers_center_value))
+print("[3, 14] Sneaker standard deviation: ", statistics.stdev(array_sneakers_value_314))
+print("[3, 14] Non-sneaker standard deviation: ", statistics.stdev(array_non_sneakers_value_314))
