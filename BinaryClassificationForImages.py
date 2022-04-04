@@ -30,3 +30,8 @@ shuffled_indices = np.random.permutation(indices)
 X_train = X_train[shuffled_indices]
 Y_train = Y_train[shuffled_indices]
 
+# Show the data shapes.
+print('X_train.shape:', X_train.shape)
+print('Y_train.shape:', Y_train.shape)
+print('X_test.shape:', X_test.shape)
+print('Y_test.shape:', Y_test.shape)
