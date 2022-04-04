@@ -59,3 +59,78 @@ for i in range(5):
   axs[i].set_title(label_name)
   axs[i].axis('off')
 plt.show()
+
+fig, axs = plt.subplots(nrows=10, ncols=5, figsize=(10,5))
+
+tshirts, trousers, pullovers, dresses, coats, sandals, shirts, sneakers, bags, ankle_boots , all= ([] for i in range(11))
+total = 0
+
+for i in range(len(Y_train)):
+
+  image = X_train[i]
+  label = Y_train[i]
+  label_name = label_names[label]
+
+  if (total == 50):
+    break
+  
+  if (len(tshirts) < 5 and label_name == 't-shirt'):
+    tshirts.append([image, label_name])
+    total = total + 1
+    
+  if (len(trousers) < 5 and label_name == 'trouser'):
+    trousers.append([image, label_name])
+    total = total + 1
+    
+  if (len(pullovers) < 5 and label_name == 'pullover'):
+    pullovers.append([image, label_name])
+    total = total + 1
+    
+  if (len(dresses) < 5 and label_name == 'dress'):
+    dresses.append([image, label_name])
+    total = total + 1
+    
+  if (len(coats) < 5 and label_name == 'coat'):
+    coats.append([image, label_name])
+    total = total + 1
+   
+  if (len(sandals) < 5 and label_name == 'sandal'):
+    sandals.append([image, label_name])
+    total = total + 1
+    
+  if (len(shirts) < 5 and label_name == 'shirt'):
+    shirts.append([image, label_name])
+    total = total + 1
+    
+  if (len(sneakers) < 5 and label_name == 'sneaker'):
+    sneakers.append([image, label_name])
+    total = total + 1
+    
+  if (len(bags) < 5 and label_name == 'bag'):
+    bags.append([image, label_name])
+    total = total + 1
+    
+  if (len(ankle_boots) < 5 and label_name == 'ankle boot'):
+    ankle_boots.append([image, label_name])
+    total = total + 1
+
+all.append(tshirts)
+all.append(trousers)
+all.append(pullovers)
+all.append(dresses)
+all.append(coats)
+all.append(sandals)
+all.append(shirts)
+all.append(sneakers)
+all.append(bags)
+all.append(ankle_boots)
+
+    
+for i in range (5): 
+  for j in range (10): 
+    axs[j][i].imshow(all[j][i][0], cmap='gray')  # imshow renders a 2D grid
+    axs[j][i].set_title(all[j][i][1])
+    axs[j][i].axis('off')
+
+
+plt.show()
