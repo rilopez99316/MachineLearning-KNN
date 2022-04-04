@@ -228,8 +228,7 @@ print("recall", recall(Y_test_binary, pred))
 for th in [0.1, 0.25, 0.5, 0.75]:
   y_hat = (pred >= th)* 1.0
   print("th: ", th, "y_hat: ", y_hat)
-  
-  #for exercise 5
+
 Y_train_binary[Y_train_binary != 7] = 1.0 
 Y_train_binary[Y_train_binary == 7] = 0.0 
 pred_ns = knn(X_train, Y_train_binary, X_test, 5)
