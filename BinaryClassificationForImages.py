@@ -228,3 +228,47 @@ print("recall", recall(Y_test_binary, pred))
 for th in [0.1, 0.25, 0.5, 0.75]:
   y_hat = (pred >= th)* 1.0
   print("th: ", th, "y_hat: ", y_hat)
+  
+  #for exercise 5
+Y_train_binary[Y_train_binary != 7] = 1.0 
+Y_train_binary[Y_train_binary == 7] = 0.0 
+pred_ns = knn(X_train, Y_train_binary, X_test, 5)
+X_test = X_test.reshape(X_test.shape[0],28,28)
+
+erroneous_sneakers = []
+erroneous_non_sneakers = []
+
+#sneaker images
+y_sneaker_th = (pred >= 0.5)* 1.0 
+
+# gets images of incorrect classified images
+for i in range(len(y_sneaker_th)):
+  if (len(erroneous_sneakers) < 5):
+    if (y_sneaker_th[i] == 1 and Y_test_binary[i] == 0):
+      erroneous_sneakers.append(X_test[i])
+
+#gets predicted for non_sneakers
+y_non_sneaker_th = (pred_ns >= 0.5)* 1.0 
+
+# gets images of incorrect classified images
+for i in range(len(y_non_sneaker_th)):
+  if (len(erroneous_non_sneakers) < 5):
+    if (y_non_sneaker_th[i] == 1 and Y_test_binary[i] == 0):
+      erroneous_non_sneakers.append(X_test[i])
+print(len(erroneous_non_sneakers))
+
+#displays images for sneakers
+fig, axs = plt.subplots(nrows=1, ncols=5, figsize=(10,5))
+for i in range(5):
+  image = erroneous_sneakers[i]
+  axs[i].imshow(image, cmap='gray')  # imshow renders a 2D grid
+  axs[i].axis('off')
+plt.show()
+
+#displays images for non_sneakers
+fig, axs = plt.subplots(nrows=1, ncols=5, figsize=(10,5))
+for i in range(5):
+  image = erroneous_non_sneakers[i]
+  axs[i].imshow(image, cmap='gray')  # imshow renders a 2D grid
+  axs[i].axis('off')
+plt.show()
