@@ -47,3 +47,15 @@ label_names = ['t-shirt', 'trouser', 'pullover', 'dress', 'coat',
 # Show the first 5 training labels.
 print('First 5 label values:', Y_train[0:5])
 print('Mapped to their names:', [label_names[i] for i in Y_train[0:5]])
+
+# Create a figure with subplots. This returns a list of object handles in axs
+# which we can use populate the plots.
+fig, axs = plt.subplots(nrows=1, ncols=5, figsize=(10,5))
+for i in range(5):
+  image = X_train[i]
+  label = Y_train[i]
+  label_name = label_names[label]
+  axs[i].imshow(image, cmap='gray')  # imshow renders a 2D grid
+  axs[i].set_title(label_name)
+  axs[i].axis('off')
+plt.show()
