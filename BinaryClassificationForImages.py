@@ -185,3 +185,26 @@ X_train = X_train.reshape(X_train.shape[0],-1)
 X_test = X_test.reshape(X_test.shape[0],-1)
 print(X_train.shape)
 print(X_test.shape)
+
+X_train = X_train[0:3000]
+Y_train_binary = Y_train_binary[0:3000]
+Y_test = Y_test[0:3000]
+X_test = X_test[0:3000]
+Y_test_binary = Y_test_binary[0:3000]
+
+def knn(X_train, Y_train_binary, X_test, k):
+  pred = np.zeros(X_test.shape[0])
+
+  for i in range(X_test.shape[0]):
+    x_test_example = X_test[i]
+
+    distances = np.sqrt(np.sum((x_test_example - X_train)**2, axis=1))
+    idx_nei = np.argsort(distances)[:k]
+    distances = distances[idx_nei]
+    y_nei = Y_train_binary[idx_nei]
+
+    w = 1 / distances
+    w = w/np.sum(w)
+
+    pred[i] = np.dot(w, y_nei)
+  return pred
