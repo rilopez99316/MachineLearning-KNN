@@ -208,3 +208,23 @@ def knn(X_train, Y_train_binary, X_test, k):
 
     pred[i] = np.dot(w, y_nei)
   return pred
+
+def accuracy(Y_test_binary, pred):
+      return np.sum(Y_test_binary == pred) / len(Y_test_binary)
+
+def precision(Y_test_binary, pred):
+  return np.sum(Y_test_binary * pred) / np.sum(pred)
+
+def recall(Y_test_binary, pred):
+  return np.sum(Y_test_binary * pred) / np.sum(Y_test_binary)
+
+pred = knn(X_train, Y_train_binary, X_test, 5)
+
+
+print("Accuracy: ", accuracy(Y_test_binary, pred))
+print("precision: ", precision(Y_test_binary, pred))
+print("recall", recall(Y_test_binary, pred))
+
+for th in [0.1, 0.25, 0.5, 0.75]:
+  y_hat = (pred >= th)* 1.0
+  print("th: ", th, "y_hat: ", y_hat)
